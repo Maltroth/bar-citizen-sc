@@ -1,0 +1,1 @@
+[11-Apr-2016 13:14:51 UTC] PHP Fatal error:  Call to undefined function do_action() in /home/starcit/public_html/radio/wp-content/themes/Avada/bbpress/pagination-topics.php on line 12
