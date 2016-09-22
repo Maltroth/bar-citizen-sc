@@ -27,7 +27,6 @@ function create_event_posttype() {
           ),
           'public' => true,
           'supports' => array('title','editor','excerpt','revisions','custom-fields'),
-          'taxonomies' =>
         )
     )
 }
