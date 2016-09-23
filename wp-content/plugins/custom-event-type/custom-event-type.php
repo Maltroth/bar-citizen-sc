@@ -35,8 +35,6 @@ function create_event_posttype()
 
 function event_meta_boxes($meta_boxes)
 {
-  $prefix = 'event_';
-
   $meta_boxes[] = array(
     'title' => __('Event Details', 'event'),
     'post_types' => 'event',
@@ -48,6 +46,8 @@ function event_meta_boxes($meta_boxes)
         'js_options' => array(
           'appendText' => __('(mm-dd-yyyy)', 'event'),
           'dateFormat' => __('mm-dd-yyyy', 'event'),
+          'showMonth' => true,
+          'showYear' => true,
           'showButtonPanel' => true,
           'minDate' => __('+2d'),
           'maxDate' => __('+6m'),
@@ -75,12 +75,6 @@ function event_meta_boxes($meta_boxes)
           'timeOnly' => true,
         ),
       ),
-      array( // Event Site URL
-        'id' => 'eventurl',
-        'name'=> __('Event URL', 'event'),
-        'type' => 'url',
-        'std' => 'http://www.austinbarcitizens.com',
-      ),
       array( // Event location
         'id' => 'eventlocation',
         'name' => __('Event Address', 'event'),
@@ -94,7 +88,25 @@ function event_meta_boxes($meta_boxes)
         'address_field' => 'eventlocation',
         'api_key' => 'AIzaSyCRUNyR8JFndC1ZwhgIGdFSDYOqn44xqHA',
       ),
+    )
+  )
+  $meta_boxes[] =  array(
+    'title' => __('Event Contact Details', 'event'),
+    'post_types' => 'event',
+    'fields' => array(
+      array( // Event Site URL
+        'id' => 'eventurl',
+        'name'=> __('Event URL', 'event'),
+        'type' => 'url',
+        'std' => 'http://www.austinbarcitizens.com',
+        'desc' => __('The link to your event site/facebook group.')
+      ),
+      array( // Own Event page
+        'id' => 'eventpage',
+        'name' => __('Event Page', 'event'),
+        'type' => 'checkbox',
+        'std'=> 0,
       )
-      )
+    )      
   )
 }
