@@ -45,10 +45,10 @@ function event_meta_boxes($meta_boxes)
 				'type'       => 'date',
 				'js_options' => array(
 					'appendText'      => __('(mm-dd-yyyy)', 'event'),
-					'dateFormat'      => __('mm-dd-yyyy', 'event'),
-					'showMonth'       => true,
-					'showYear'        => true,
-					'showButtonPanel' => true,
+					'dateFormat'      => __('mm-dd-yy', 'event'),
+					'showMonth'       => false,
+					'showYear'        => false,
+					'showButtonPanel' => false,
 					'minDate'         => __('+2d'),
 					'maxDate'         => __('+6m'),
 				),
@@ -60,7 +60,7 @@ function event_meta_boxes($meta_boxes)
 				'js_options' => array(
 						'showSecond'   => false,
 						'stepMinute'   => 10,
-						'showTimezone' => true,
+						'showTimezone' => false,
 						'timeOnly'     => true,
 				),
 			),
@@ -71,7 +71,7 @@ function event_meta_boxes($meta_boxes)
 				'js_options' => array(
 					'showSecond'   => false,
 					'stepMinute'   => 10,
-					'showTimezone' => true,
+					'showTimezone' => false,
 					'timeOnly'     => true,
 				),
 			),
@@ -99,7 +99,6 @@ function event_meta_boxes($meta_boxes)
 				'id'   => 'eventurl',
 				'name' => __('Event URL', 'event'),
 				'type' => 'url',
-				'std'  => 'http://www.austinbarcitizens.com',
 				'desc' => __('The link to your event site/facebook group.')
 			),
 			array( // Own Event page
