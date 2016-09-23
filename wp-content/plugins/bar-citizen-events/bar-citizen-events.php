@@ -60,7 +60,6 @@ function event_meta_boxes($meta_boxes)
 				'name' => __('Event Description - only for event pages'),
 				'type' => 'wysiwyg',
 				'raw' => false,
-				'teeny' => yes,
 				'media_buttons' => false,
 			),
 		),
@@ -75,11 +74,9 @@ function event_meta_boxes($meta_boxes)
 				'name'       => __('Date','event'),
 				'type'       => 'date',
 				'js_options' => array(
+					'showButtonPanel' => false,
 					'appendText'      => __('(mm-dd-yyyy)', 'event'),
 					'dateFormat'      => __('mm-dd-yy', 'event'),
-					'showMonth'       => false,
-					'showYear'        => false,
-					'showButtonPanel' => false,
 					'minDate'         => __('+2d'),
 					'maxDate'         => __('+6m'),
 				),
@@ -91,7 +88,6 @@ function event_meta_boxes($meta_boxes)
 				'js_options' => array(
 						'showSecond'   => false,
 						'stepMinute'   => 10,
-						'showTimezone' => false,
 						'timeOnly'     => true,
 				),
 			),
@@ -102,7 +98,6 @@ function event_meta_boxes($meta_boxes)
 				'js_options' => array(
 					'showSecond'   => false,
 					'stepMinute'   => 10,
-					'showTimezone' => false,
 					'timeOnly'     => true,
 				),
 			),
@@ -132,6 +127,11 @@ function event_meta_boxes($meta_boxes)
 				'type' => 'url',
 				'desc' => __('The link to your event site/facebook group.')
 			),
+			array( // Contact email
+				'id' => 'eventemail',
+				'name' => __('Contact Email - Will not be shown to public', 'event'),
+				'type'  => 'email',
+			)
 		)
 	);
 	return $meta_boxes;
