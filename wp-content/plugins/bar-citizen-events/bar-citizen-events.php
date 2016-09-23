@@ -48,7 +48,7 @@ function event_meta_boxes($meta_boxes)
 			),
 			array(
 					'type' => 'divider',
-			)
+			),
 			array( // Own Event page
 				'id'   => 'eventpage',
 				'name' => __('Do you want your own event page?', 'event'),
@@ -57,7 +57,7 @@ function event_meta_boxes($meta_boxes)
 			),
 			array(
 				'id' => 'eventdescription',
-				'name' => __('Event Description - only for event pages').
+				'name' => __('Event Description - only for event pages'),
 				'type' => 'wysiwyg',
 				'raw' => false,
 				'teeny' => yes,
@@ -65,6 +65,7 @@ function event_meta_boxes($meta_boxes)
 			),
 		),
 	);
+
 	$meta_boxes[] = array(
 		'title' => __('Event Details', 'event'),
 		'post_types' => 'event',
