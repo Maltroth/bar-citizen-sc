@@ -28,7 +28,7 @@ function create_event_posttype()
 				'parent'             => __('Parent Event'),
 			),
 			'public' => true,
-			'supports' => array('title','editor','excerpt','revisions','custom-fields'),
+			'supports' => array('title','editor','revisions'),
 		)
 	);
 }
@@ -108,6 +108,7 @@ function event_meta_boxes($meta_boxes)
 				'type' => 'checkbox',
 				'std'  => 0,
 			)
-		)      
+		)
 	);
+	return $meta_boxes;
 }
