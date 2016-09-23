@@ -28,13 +28,43 @@ function create_event_posttype()
 				'parent'             => __('Parent Event'),
 			),
 			'public' => true,
-			'supports' => array('title','editor','revisions'),
+			'supports' => array('title','thumbnail','revisions'),
 		)
 	);
 }
 
 function event_meta_boxes($meta_boxes)
 {
+	$meta_boxes[] = array(
+		'title' => __('Event Description', 'event'),
+		'post_types' => 'event',
+		'fields' => array(
+			array( // Event Excerpt
+				'id' => 'eventexcerpt',
+				'name' => __('Event Excerpt ', 'event'),
+				'type' => 'textarea',
+				'limit' => 35,
+				'limit_type' => 'word',
+			),
+			array(
+					'type' => 'divider',
+			)
+			array( // Own Event page
+				'id'   => 'eventpage',
+				'name' => __('Do you want your own event page?', 'event'),
+				'type' => 'checkbox',
+				'std'  => 0,
+			),
+			array(
+				'id' => 'eventdescription',
+				'name' => __('Event Description - only for event pages').
+				'type' => 'wysiwyg',
+				'raw' => false,
+				'teeny' => yes,
+				'media_buttons' => false,
+			),
+		),
+	);
 	$meta_boxes[] = array(
 		'title' => __('Event Details', 'event'),
 		'post_types' => 'event',
@@ -101,12 +131,6 @@ function event_meta_boxes($meta_boxes)
 				'type' => 'url',
 				'desc' => __('The link to your event site/facebook group.')
 			),
-			array( // Own Event page
-				'id'   => 'eventpage',
-				'name' => __('Event Page', 'event'),
-				'type' => 'checkbox',
-				'std'  => 0,
-			)
 		)
 	);
 	return $meta_boxes;
