@@ -29,6 +29,7 @@ function create_event_posttype()
 			),
 			'public' => true,
 			'supports' => array('title','thumbnail','revisions'),
+			'menu_icon' => 'dashicons-location',
 		)
 	);
 }
