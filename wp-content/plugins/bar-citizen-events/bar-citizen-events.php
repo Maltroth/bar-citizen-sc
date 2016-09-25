@@ -7,6 +7,10 @@
  */
 add_action('init', 'create_event_posttype');
 add_filter('rwmb_meta_boxes', 'event_meta_boxes');
+add_filter('rwmb_eventdate_meta', function($value)
+{
+    return $value ? date( 'j F, Y') : '';
+} );
 
 function create_event_posttype()
 {
@@ -76,8 +80,8 @@ function event_meta_boxes($meta_boxes)
 				'type'       => 'date',
 				'js_options' => array(
 					'showButtonPanel' => false,
-					'appendText'      => __('(mm-dd-yyyy)', 'event'),
-					'dateFormat'      => __('mm-dd-yy', 'event'),
+					'appendText'      => __('(yyyy-mm-dd)', 'event'),
+					'dateFormat'      => __('yy-mm-dd', 'event'),
 					'minDate'         => __('+2d'),
 					'maxDate'         => __('+6m'),
 				),
