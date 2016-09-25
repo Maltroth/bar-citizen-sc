@@ -7,9 +7,11 @@
  */
 add_action('init', 'create_event_posttype');
 add_filter('rwmb_meta_boxes', 'event_meta_boxes');
+
+// Display the meta date field differently on front-end
 add_filter('rwmb_eventdate_meta', function($value)
 {
-    return $value ? date( 'j F, Y') : '';
+    return $value ? date('j F, Y', strtotime($value)) : '';
 } );
 
 function create_event_posttype()
