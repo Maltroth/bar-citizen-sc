@@ -109,7 +109,7 @@ function event_meta_boxes($meta_boxes)
 				),
 			),
       array( // Event short location
-        'id'   => 'eventlocation',
+        'id'   => 'eventlocationshort',
         'name' => __('Short Event Location - City, Country', 'event'),
         'type' => 'text',
         'size' => '50',
