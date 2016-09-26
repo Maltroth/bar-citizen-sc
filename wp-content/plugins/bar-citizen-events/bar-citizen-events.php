@@ -164,18 +164,6 @@ function event_meta_boxes($meta_boxes)
 	return $meta_boxes;
 }
 
-function eventedit($post_id)
-{
-  global $post;
-  if (!is_object($post)) { return; }
-  if (current_user_can('subscriber') && $post->post_status=='publish')
-  {
-    remove_action('save_post', 'eventedit');
-    wp_update_post(array('ID' => $post_id, 'post_status' => 'pending'));
-    add_action('save_post', 'eventedit');
-  }
-}
-
 function roles_on_plugin_activation()
 {
   add_role('organiser','Organiser',
@@ -207,7 +195,6 @@ function roles_on_plugin_activation()
   $role->add_cap('edit_published_events');
 
   $role = get_role('subscriber');
-  $role->add_cap('publish_events');
   $role->add_cap('edit_events');
   $role->add_cap('delete_events');
   $role->add_cap('delete_published_events');
