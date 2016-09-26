@@ -68,7 +68,7 @@ function event_meta_boxes($meta_boxes)
 			),
 			array(
 				'id' => 'eventdescription',
-				'name' => __('Event Description - only for event pages'),
+				'name' => __('Event Description - Only if you want your own page'),
 				'type' => 'wysiwyg',
 				'raw' => false,
 				'media_buttons' => false,
@@ -112,9 +112,15 @@ function event_meta_boxes($meta_boxes)
 					'timeOnly'     => true,
 				),
 			),
+      array( // Event short location
+        'id'   => 'eventlocationshort',
+        'name' => __('Short Event Location - City, Country', 'event'),
+        'type' => 'text',
+        'size' => '50',
+      ),
 			array( // Event location
 				'id'   => 'eventlocation',
-				'name' => __('Event Address', 'event'),
+				'name' => __('Full Event Location', 'event'),
 				'type' => 'text',
 				'size' => '50',
 			),
