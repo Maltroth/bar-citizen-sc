@@ -2,3 +2,26 @@ ul.events-list {
 	padding: 0;
 	list-style: none;
 }
+
+ul.events-list .event {
+	background: #1c1f26;
+	padding: 15px;
+	margin: 10px;
+	width: 48%;
+	max-height: 112px;
+}
+
+ul.events-list .event img {
+	max-height: 80px;
+	width: auto;
+	margin: 0 auto;
+}
+
+ul.events-list .event .event-thumb {
+	text-align: center;
+}
+
+ul.events-list .event .event-name h3 {
+	margin: -5px 0 3px 0;
+	padding: 0;
+}
