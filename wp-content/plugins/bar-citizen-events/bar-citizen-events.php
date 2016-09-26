@@ -45,8 +45,8 @@ function create_event_posttype()
         'edit_published_posts' => 'edit_published_events',
         'delete_published_posts' => 'delete_published_events',
         'publish_posts' => 'publish_events',
-        'delete_other_posts', => 'delete_other_events',
-        'edit_other_posts', => 'edit_other_events',
+        'delete_other_posts' => 'delete_other_events',
+        'edit_other_posts' => 'edit_other_events',
       )
 		)
 	);
@@ -162,7 +162,8 @@ function event_meta_boxes($meta_boxes)
 	return $meta_boxes;
 }
 
-function eventedit($post_id) {
+function eventedit($post_id)
+{
   global $post;
   if (!is_object($post)) { return; }
   if (current_user_can('subscriber') && $post->post_status=='publish')
@@ -172,7 +173,8 @@ function eventedit($post_id) {
     add_action('save_post', 'eventedit');
   }
 }
-function roles_on_plugin_activation(){
+function roles_on_plugin_activation()
+{
   add_role('organiser','Organiser',
     array(
       'read' => true,
@@ -181,9 +183,8 @@ function roles_on_plugin_activation(){
       'delete_events' => true,
       'delete_published_events' => true,
       'publish_events' => true,
-      'level_1' => true,
     )
-  )
+  );
   if( get_role('contributor') )
   {
       remove_role( 'contributor' );
