@@ -7,7 +7,10 @@
  */
 add_action('init', 'create_event_posttype');
 add_filter('rwmb_meta_boxes', 'event_meta_boxes');
+register_activation_hook(__FILE__,'roles_on_plugin_activation');
 
+// Change event status after editing a published event
+add_action('save_post', 'eventedit');
 // Display the meta date field differently on front-end
 add_filter('rwmb_eventdate_meta', function($value)
 {
@@ -36,6 +39,15 @@ function create_event_posttype()
 			'public' => true,
 			'supports' => array('title','thumbnail','revisions'),
 			'menu_icon' => 'dashicons-location',
+      'capabilities' => array(
+        'edit_posts' => 'edit_events',
+        'delete_posts' => 'delete_events',
+        'edit_published_posts' => 'edit_published_events',
+        'delete_published_posts' => 'delete_published_events',
+        'publish_posts' => 'publish_events',
+        'delete_other_posts', => 'delete_other_events',
+        'edit_other_posts', => 'edit_other_events',
+      )
 		)
 	);
 }
@@ -148,4 +160,52 @@ function event_meta_boxes($meta_boxes)
 		)
 	);
 	return $meta_boxes;
+}
+
+function eventedit($post_id) {
+  global $post;
+  if (!is_object($post)) { return; }
+  if (current_user_can('subscriber') && $post->post_status=='publish')
+  {
+    remove_action('save_post', 'eventedit');
+    wp_update_post(array('ID' => $post_id, 'post_status' => 'pending'));
+    add_action('save_post', 'eventedit');
+  }
+}
+function roles_on_plugin_activation(){
+  add_role('organiser','Organiser',
+    array(
+      'read' => true,
+      'edit_events' => true,
+      'edit_published_events' => true,
+      'delete_events' => true,
+      'delete_published_events' => true,
+      'publish_events' => true,
+      'level_1' => true,
+    )
+  )
+  if( get_role('contributor') )
+  {
+      remove_role( 'contributor' );
+  }
+  if( get_role('author') )
+  {
+      remove_role( 'author' );
+  }
+  $role = get_role('editor');
+  $role->add_cap('delete_other_events');
+  $role->add_cap('publish_events');
+  $role->add_cap('promote_users');
+  $role->add_cap('delete_events');
+  $role->add_cap('delete_published_events');
+  $role->add_cap('edit_events');
+  $role->add_cap('edit_other_events');
+  $role->add_cap('edit_published_events');
+
+  $role = get_role('subscriber');
+  $role->add_cap('publish_events');
+  $role->add_cap('edit_events');
+  $role->add_cap('delete_events');
+  $role->add_cap('delete_published_events');
+  $role->add_cap('edit_published_events');
 }
