@@ -39,6 +39,8 @@ function create_event_posttype()
 			'public' => true,
 			'supports' => array('title','thumbnail','revisions'),
 			'menu_icon' => 'dashicons-location',
+      'map_meta_cap' => true,
+      'capability_type' => 'post',
       'capabilities' => array(
         'edit_posts' => 'edit_events',
         'delete_posts' => 'delete_events',
@@ -46,7 +48,7 @@ function create_event_posttype()
         'delete_published_posts' => 'delete_published_events',
         'publish_posts' => 'publish_events',
         'delete_other_posts' => 'delete_other_events',
-        'edit_other_posts' => 'edit_other_events',
+        'edit_other_posts' => 'edit_other_events'
       )
 		)
 	);
@@ -173,6 +175,7 @@ function eventedit($post_id)
     add_action('save_post', 'eventedit');
   }
 }
+
 function roles_on_plugin_activation()
 {
   add_role('organiser','Organiser',
@@ -208,5 +211,15 @@ function roles_on_plugin_activation()
   $role->add_cap('edit_events');
   $role->add_cap('delete_events');
   $role->add_cap('delete_published_events');
+  $role->add_cap('edit_published_events');
+
+  $role = get_role('administrator');
+  $role->add_cap('delete_other_events');
+  $role->add_cap('publish_events');
+  $role->add_cap('promote_users');
+  $role->add_cap('delete_events');
+  $role->add_cap('delete_published_events');
+  $role->add_cap('edit_events');
+  $role->add_cap('edit_other_events');
   $role->add_cap('edit_published_events');
 }
