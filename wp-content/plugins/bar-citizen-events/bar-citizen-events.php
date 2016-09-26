@@ -5,6 +5,10 @@
  * Version: 0.1
  * Author: Facerafter, Maltroth
  */
+
+// Get the shortcode
+require 'events-shortcode.php';
+
 add_action('init', 'create_event_posttype');
 add_filter('rwmb_meta_boxes', 'event_meta_boxes');
 
