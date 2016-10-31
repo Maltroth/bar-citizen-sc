@@ -198,7 +198,6 @@ function roles_on_plugin_activation()
   $role->add_cap('edit_events');
   $role->add_cap('delete_events');
   $role->add_cap('delete_published_events');
-  $role->add_cap('edit_published_events');
 
   $role = get_role('administrator');
   $role->add_cap('delete_other_events');
